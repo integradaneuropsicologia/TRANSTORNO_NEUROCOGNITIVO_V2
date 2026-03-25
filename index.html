@@ -330,24 +330,18 @@
    const AREA_PACIENTE_URL = "https://integradaneuropsicologia.github.io/area-do-paciente-v2/";
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    const FREQ5   = ["Nunca/Raramente","Pouca frequência","Regular","Muito frequente", "Sempre/Quase sempre", "Não se aplica"];
-    const SEVER4  = ["Não","Leve","Moderada","Grave", "Não se aplica"];
-    const YESNO   = ["Sim","Não", "Não se aplica"];
-    const YNP     = ["Sim","Não","Não sei", "Não se aplica"];
+   const FREQ5   = ["Nunca","Raramente","Frequentemente", "Sempre", "Não se aplica"];
+const SEVER4  = ["Não","Leve","Moderada","Grave", "Não se aplica"];
+const YESNO   = ["Sim","Não", "Não se aplica"];
+const YNP     = ["Sim","Não","Não sei", "Não se aplica"];
 
-/**************************************************************
- * PONTUAÇÃO DAS ESCALAS
- * (null = não entra na soma)
- **************************************************************/
 const SCALE_SCORE_MAPS = {
   FREQ5: {
-    "Nunca/Raramente": 0,
-    "Pouca frequência":1,
-    "Regular": 2,
-    "Muito frequente": 3,
-     "Sempre/Quase sempre": 4,
-     "Não se aplica": null
-   
+    "Nunca": 0,
+    "Raramente": 1,
+    "Frequentemente": 2,
+    "Sempre": 3,
+    "Não se aplica": null
   },
 
   SEVER4: {
@@ -357,11 +351,13 @@ const SCALE_SCORE_MAPS = {
     "Grave": 3,
     "Não se aplica": null
   },
+
   YESNO: {
     "Não": 0,
     "Sim": 1,
     "Não se aplica": null
   },
+
   YNP: {
     "Não": null,
     "Sim": null,
@@ -370,188 +366,545 @@ const SCALE_SCORE_MAPS = {
   }
 };
 
-    /**************************************************************
+/**************************************************************
  * CONFIGURAÇÃO DAS PERGUNTAS (DINÂMICO)
  **************************************************************/
 const FORM_QUESTIONS = [
- {
-  name:"1",
-  section:"História Cognitiva",
-  type:"radio",
-  text:"Você ou alguém próximo percebeu piora na memória ou no pensamento recentemente?",
-  options:YNP,
-  scale:"YNP"
-},
-{
-  name:"2",
-  section:"História Cognitiva",
-  type:"radio",
-  text:"Os sintomas começaram de forma lenta e progressiva ao longo de meses ou anos?",
-  options:YNP,
-  scale:"YNP"
-},
+  {
+    name:"1",
+    section:"História Cognitiva",
+    type:"radio",
+    text:"Você ou alguém próximo percebeu piora na memória, na atenção, na organização, na fala ou no raciocínio recentemente?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"2",
+    section:"História Cognitiva",
+    type:"radio",
+    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio já existiam na infância ou adolescência?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"3",
+    section:"História Cognitiva",
+    type:"radio",
+    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio apareceram somente na vida adulta?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"4",
+    section:"História Cognitiva",
+    type:"radio",
+    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio começaram de forma repentina?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"5",
+    section:"História Cognitiva",
+    type:"radio",
+    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio foram piorando aos poucos com o passar do tempo?",
+    options:YNP,
+    scale:"YNP"
+  },
 
-{
-  name:"3",
-  section:"Funcionalidade (IADL)",
-  type:"radio",
-  text:"Dificuldade para administrar contas ou finanças?",
-  options:SEVER4,
-  scale:"SEVER4"
-},
-{
-  name:"4",
-  section:"Funcionalidade (IADL)",
-  type:"radio",
-  text:"Dificuldade para organizar medicações ou horários?",
-  options:SEVER4,
-  scale:"SEVER4"
-},
-{
-  name:"5",
-  section:"Funcionalidade (ADL)",
-  type:"radio",
-  text:"Precisa de ajuda para atividades básicas como higiene ou vestir-se?",
-  options:SEVER4,
-  scale:"SEVER4"
-},
+  {
+    name:"6",
+    section:"Atenção",
+    type:"radio",
+    text:"Você se distrai com facilidade durante conversas, leituras ou tarefas do dia a dia?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"7",
+    section:"Atenção",
+    type:"radio",
+    text:"Você tem dificuldade para manter a atenção até o fim de uma tarefa, mesmo quando ela é importante?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"8",
+    section:"Atenção",
+    type:"radio",
+    text:"Você perde o foco com facilidade quando há barulho, movimento ou outras distrações ao redor?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"9",
+    section:"Atenção",
+    type:"radio",
+    text:"Você precisa que expliquem ou repitam instruções porque não conseguiu prestar atenção direito da primeira vez?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"10",
+    section:"Atenção",
+    type:"radio",
+    text:"Você comete erros por distração em tarefas simples do dia a dia, no trabalho ou nos estudos?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"6",
-  section:"Atenção Complexa",
-  type:"radio",
-  text:"Dificuldade para manter atenção em conversas ou tarefas longas?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"11",
+    section:"Memória",
+    type:"radio",
+    text:"Você esquece compromissos, horários, recados ou tarefas importantes no dia a dia?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"12",
+    section:"Memória",
+    type:"radio",
+    text:"Você esquece onde guardou objetos como celular, chave, carteira ou documentos?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"13",
+    section:"Memória",
+    type:"radio",
+    text:"Você esquece com facilidade o que acabou de ouvir, ler ou combinar com alguém?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"14",
+    section:"Memória",
+    type:"radio",
+    text:"Você repete perguntas, assuntos ou histórias porque não percebe que já falou sobre isso antes?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"15",
+    section:"Memória",
+    type:"radio",
+    text:"Você precisa anotar quase tudo para conseguir lembrar de tarefas, compromissos ou informações importantes?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"16",
+    section:"Memória",
+    type:"radio",
+    text:"Você tem dificuldade para aprender informações novas, mesmo quando presta atenção?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"7",
-  section:"Função Executiva",
-  type:"radio",
-  text:"Dificuldade para planejar tarefas ou resolver problemas do dia a dia?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"17",
+    section:"Linguagem",
+    type:"radio",
+    text:"Você tem dificuldade para encontrar a palavra certa quando está falando?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"18",
+    section:"Linguagem",
+    type:"radio",
+    text:"Você troca nomes de pessoas, objetos ou lugares sem querer?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"19",
+    section:"Linguagem",
+    type:"radio",
+    text:"Você tem dificuldade para entender o que as pessoas dizem, mesmo quando estão falando de forma clara?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"20",
+    section:"Linguagem",
+    type:"radio",
+    text:"Você se perde ou deixa de acompanhar conversas mais longas ou com muitas informações?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"21",
+    section:"Linguagem",
+    type:"radio",
+    text:"Você tem dificuldade para entender textos, instruções escritas ou mensagens simples?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"8",
-  section:"Aprendizagem e Memória",
-  type:"radio",
-  text:"Esquece compromissos ou recados recentes com frequência?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
-{
-  name:"9",
-  section:"Aprendizagem e Memória",
-  type:"radio",
-  text:"Repete perguntas ou histórias no mesmo dia?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"22",
+    section:"Organização e Planejamento",
+    type:"radio",
+    text:"Você tem dificuldade para planejar o que precisa fazer ao longo do dia ou da semana?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"23",
+    section:"Organização e Planejamento",
+    type:"radio",
+    text:"Você tem dificuldade para organizar horários, materiais, documentos ou compromissos?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"24",
+    section:"Organização e Planejamento",
+    type:"radio",
+    text:"Você começa tarefas, mas tem dificuldade para terminar o que começou?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"25",
+    section:"Organização e Planejamento",
+    type:"radio",
+    text:"Você adia tarefas importantes mesmo sabendo que precisa resolvê-las?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"26",
+    section:"Organização e Planejamento",
+    type:"radio",
+    text:"Você tem dificuldade para resolver problemas práticos do dia a dia, como decidir o que fazer primeiro ou como se organizar?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"27",
+    section:"Organização e Planejamento",
+    type:"radio",
+    text:"Você age por impulso e depois percebe que deveria ter pensado melhor antes de agir ou falar?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"28",
+    section:"Organização e Planejamento",
+    type:"radio",
+    text:"Você tem dificuldade para mudar de plano quando algo sai diferente do que esperava?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"10",
-  section:"Linguagem",
-  type:"radio",
-  text:"Dificuldade para encontrar palavras durante a conversa?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"29",
+    section:"Velocidade de Pensamento",
+    type:"radio",
+    text:"Você sente que está mais lento para entender o que os outros falam ou pedem?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"30",
+    section:"Velocidade de Pensamento",
+    type:"radio",
+    text:"Você demora mais do que gostaria para responder perguntas ou tomar decisões simples?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"31",
+    section:"Velocidade de Pensamento",
+    type:"radio",
+    text:"Você sente que precisa de mais tempo para raciocinar, resolver problemas ou terminar tarefas mentais?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"11",
-  section:"Percepção Visuoespacial",
-  type:"radio",
-  text:"Já se perdeu em lugares conhecidos ou teve dificuldade para se orientar?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"32",
+    section:"Orientação",
+    type:"radio",
+    text:"Você se confunde com datas, horários, dias da semana ou compromissos marcados?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"33",
+    section:"Orientação",
+    type:"radio",
+    text:"Você já se confundiu sobre onde estava, para onde estava indo ou o motivo de ter ido a algum lugar?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"34",
+    section:"Orientação",
+    type:"radio",
+    text:"Você tem dificuldade para reconhecer pessoas conhecidas ou lembrar nomes de pessoas próximas?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"12",
-  section:"Cognição Social",
-  type:"radio",
-  text:"Mudanças marcantes no comportamento social, empatia ou julgamento?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"35",
+    section:"Percepção e Espaço",
+    type:"radio",
+    text:"Você tem dificuldade para se localizar em lugares conhecidos ou para lembrar caminhos que já fazia antes?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"36",
+    section:"Percepção e Espaço",
+    type:"radio",
+    text:"Você confunde direita e esquerda ou se atrapalha com direções e trajetos?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"37",
+    section:"Percepção e Espaço",
+    type:"radio",
+    text:"Você esbarra em objetos, calcula mal distâncias ou se atrapalha para estacionar, passar em espaços ou pegar objetos?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"38",
+    section:"Percepção e Espaço",
+    type:"radio",
+    text:"Você tem dificuldade para copiar, montar, desenhar ou organizar coisas visualmente?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"13",
-  section:"Comportamento",
-  type:"radio",
-  text:"Apatia, perda de iniciativa ou irritabilidade aumentada?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"39",
+    section:"Coordenação",
+    type:"radio",
+    text:"Você tem dificuldade para usar objetos do dia a dia, como talheres, ferramentas, controles ou utensílios, mesmo já sabendo como usá-los?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"40",
+    section:"Coordenação",
+    type:"radio",
+    text:"Você percebe piora na coordenação das mãos para escrever, abotoar, recortar ou manusear objetos pequenos?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"41",
+    section:"Coordenação",
+    type:"radio",
+    text:"Você derruba objetos, tropeça ou se sente mais desajeitado do que costumava ser?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"14",
-  section:"Sono",
-  type:"radio",
-  text:"Sono muito fragmentado ou inversão do ciclo sono-vigília?",
-  options:FREQ5,
-  scale:"FREQ5"
-},
+  {
+    name:"42",
+    section:"Impacto Funcional",
+    type:"radio",
+    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam no seu desempenho no trabalho ou nos estudos?",
+    options:SEVER4,
+    scale:"SEVER4"
+  },
+  {
+    name:"43",
+    section:"Impacto Funcional",
+    type:"radio",
+    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam na sua rotina diária dentro de casa?",
+    options:SEVER4,
+    scale:"SEVER4"
+  },
+  {
+    name:"44",
+    section:"Impacto Funcional",
+    type:"radio",
+    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam na sua capacidade de cuidar de horários, contas, remédios ou compromissos?",
+    options:SEVER4,
+    scale:"SEVER4"
+  },
+  {
+    name:"45",
+    section:"Impacto Funcional",
+    type:"radio",
+    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam na sua autonomia para resolver as coisas sozinho?",
+    options:SEVER4,
+    scale:"SEVER4"
+  },
 
-{
-  name:"15",
-  section:"Curso Clínico",
-  type:"radio",
-  text:"Os sintomas apresentam piora gradual ao longo do tempo?",
-  options:YNP,
-  scale:"YNP"
-},
+  {
+    name:"46",
+    section:"Sono e Fatores Emocionais",
+    type:"radio",
+    text:"A ansiedade atrapalha sua atenção, memória, organização ou raciocínio?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"47",
+    section:"Sono e Fatores Emocionais",
+    type:"radio",
+    text:"O desânimo, a tristeza ou a falta de energia atrapalham sua atenção, memória, organização ou raciocínio?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"48",
+    section:"Sono e Fatores Emocionais",
+    type:"radio",
+    text:"Você dorme mal ou acorda várias vezes durante a noite?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
+  {
+    name:"49",
+    section:"Sono e Fatores Emocionais",
+    type:"radio",
+    text:"Você acorda cansado e percebe que isso piora sua atenção, memória ou raciocínio ao longo do dia?",
+    options:FREQ5,
+    scale:"FREQ5"
+  },
 
-{
-  name:"16",
-  section:"Diferencial",
-  type:"radio",
-  text:"Início súbito com flutuação de atenção e consciência (sugere delirium)?",
-  options:YNP,
-  scale:"YNP"
-},
+  {
+    name:"50",
+    section:"Desenvolvimento e Escolaridade",
+    type:"radio",
+    text:"Na infância, você teve atraso para falar, entender, se comunicar ou aprender?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"51",
+    section:"Desenvolvimento e Escolaridade",
+    type:"radio",
+    text:"Na infância ou adolescência, você teve dificuldades importantes na escola, como para ler, escrever, fazer contas, prestar atenção ou se organizar?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"52",
+    section:"Desenvolvimento e Escolaridade",
+    type:"radio",
+    text:"Desde a infância, você já apresentava dificuldade para manter atenção, seguir regras, se organizar ou terminar tarefas?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"53",
+    section:"Desenvolvimento e Escolaridade",
+    type:"radio",
+    text:"Você já precisou de reforço escolar, adaptação, acompanhamento especializado ou repetiu de ano por dificuldades de aprendizagem ou atenção?",
+    options:YNP,
+    scale:"YNP"
+  },
 
-{
-  name:"17",
-  section:"Diferencial",
-  type:"radio",
-  text:"Sintomas depressivos importantes que podem explicar as queixas cognitivas?",
-  options:YNP,
-  scale:"YNP"
-},
+  {
+    name:"54",
+    section:"Histórico Médico e Neurológico",
+    type:"radio",
+    text:"Você já teve alguma pancada forte na cabeça, traumatismo craniano ou perda de consciência?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"55",
+    section:"Histórico Médico e Neurológico",
+    type:"radio",
+    text:"Você já teve convulsão, epilepsia, desmaios repetidos ou algum problema neurológico importante?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"56",
+    section:"Histórico Médico e Neurológico",
+    type:"radio",
+    text:"Você já teve AVC, infecção no cérebro, meningite ou outra doença que possa ter afetado memória, atenção, fala ou raciocínio?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"57",
+    section:"Histórico Médico e Neurológico",
+    type:"radio",
+    text:"Você tem alguma doença de saúde que possa interferir na atenção, memória, energia ou raciocínio, como problema de tireoide, diabetes, dor crônica ou outra condição clínica importante?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"58",
+    section:"Histórico Médico e Neurológico",
+    type:"radio",
+    text:"Você usa algum remédio que percebe que piora sua atenção, memória, sono ou raciocínio?",
+    options:YNP,
+    scale:"YNP"
+  },
 
-{
-  name:"18",
-  section:"Diferencial",
-  type:"radio",
-  text:"Uso de medicações que podem afetar cognição (benzodiazepínicos, anticolinérgicos)?",
-  options:YNP,
-  scale:"YNP"
-},
+  {
+    name:"59",
+    section:"Uso de Substâncias",
+    type:"radio",
+    text:"Você usa bebida alcoólica com frequência a ponto de perceber prejuízo na atenção, memória, sono ou raciocínio?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"60",
+    section:"Uso de Substâncias",
+    type:"radio",
+    text:"Você usa maconha, cocaína, estimulantes, calmantes ou outras substâncias que possam interferir no funcionamento mental?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"61",
+    section:"Uso de Substâncias",
+    type:"radio",
+    text:"Você percebe que sua atenção, memória, organização ou raciocínio pioram por causa do uso de álcool, drogas ou medicações?",
+    options:YNP,
+    scale:"YNP"
+  },
 
-{
-  name:"19",
-  section:"Segurança",
-  type:"radio",
-  text:"Esquece fogão ligado, portas abertas ou outras situações de risco?",
-  options:YNP,
-  scale:"YNP"
-},
-
-{
-  name:"20",
-  section:"Segurança",
-  type:"radio",
-  text:"Risco ao dirigir ou se locomover sozinho?",
-  options:YNP,
-  scale:"YNP"
-}
-
+  {
+    name:"62",
+    section:"História Familiar",
+    type:"radio",
+    text:"Há pessoas na sua família com dificuldades importantes de atenção, memória, aprendizagem, linguagem ou organização?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"63",
+    section:"História Familiar",
+    type:"radio",
+    text:"Há pessoas na sua família com diagnóstico de TDAH, autismo, dificuldade de aprendizagem ou deficiência intelectual?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"64",
+    section:"História Familiar",
+    type:"radio",
+    text:"Há pessoas na sua família com demência, Alzheimer ou perda importante de memória?",
+    options:YNP,
+    scale:"YNP"
+  },
+  {
+    name:"65",
+    section:"História Familiar",
+    type:"radio",
+    text:"Há pessoas na sua família com depressão, ansiedade, transtorno bipolar, esquizofrenia ou outros transtornos mentais importantes?",
+    options:YNP,
+    scale:"YNP"
+  }
 ];
-
 const INDICATORS_CONFIG = {};
 
     /**************************************************************
