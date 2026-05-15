@@ -369,543 +369,1065 @@ const SCALE_SCORE_MAPS = {
 /**************************************************************
  * CONFIGURAÇÃO DAS PERGUNTAS (DINÂMICO)
  **************************************************************/
-const FORM_QUESTIONS = [
+
+    const FORM_QUESTIONS = [
   {
-    name:"1",
-    section:"História Cognitiva",
-    type:"radio",
-    text:"Você ou alguém próximo percebeu piora na memória, na atenção, na organização, na fala ou no raciocínio recentemente?",
-    options:YNP,
-    scale:"YNP"
+    name: "1",
+    type: "radio",
+    section: "Neurocognitivo — Triagem & História",
+    text: "Você ou alguém próximo percebeu piora da sua memória, atenção, linguagem, raciocínio, organização, orientação ou comportamento em comparação com seu funcionamento anterior?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
   },
   {
-    name:"2",
-    section:"História Cognitiva",
-    type:"radio",
-    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio já existiam na infância ou adolescência?",
-    options:YNP,
-    scale:"YNP"
+    name: "2",
+    type: "radio",
+    section: "Neurocognitivo — Triagem & História",
+    text: "Essa piora cognitiva representa uma mudança clara em relação ao seu jeito habitual de funcionar no passado?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
   },
   {
-    name:"3",
-    section:"História Cognitiva",
-    type:"radio",
-    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio apareceram somente na vida adulta?",
-    options:YNP,
-    scale:"YNP"
+    name: "3",
+    type: "radio",
+    section: "Neurocognitivo — Triagem & História",
+    text: "Familiares, amigos, colegas ou profissionais já comentaram que você está mais esquecido, confuso, desorganizado, repetitivo ou diferente cognitivamente?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
   },
   {
-    name:"4",
-    section:"História Cognitiva",
-    type:"radio",
-    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio começaram de forma repentina?",
-    options:YNP,
-    scale:"YNP"
+    name: "4",
+    type: "radio",
+    section: "Neurocognitivo — Triagem & História",
+    text: "Você percebe que está cometendo erros que antes não cometia em tarefas rotineiras, como pagar contas, tomar remédios, cozinhar, dirigir, trabalhar ou organizar compromissos?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"5",
-    section:"História Cognitiva",
-    type:"radio",
-    text:"As dificuldades com memória, atenção, organização, fala ou raciocínio foram piorando aos poucos com o passar do tempo?",
-    options:YNP,
-    scale:"YNP"
+    name: "5",
+    type: "radio",
+    section: "Neurocognitivo — Triagem & História",
+    text: "Essa dificuldade cognitiva vem piorando ao longo do tempo, em vez de ser apenas uma dificuldade passageira ou pontual?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
   },
 
   {
-    name:"6",
-    section:"Atenção",
-    type:"radio",
-    text:"Você se distrai com facilidade durante conversas, leituras ou tarefas do dia a dia?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "6",
+    type: "radio",
+    section: "Neurocognitivo — Memória e Aprendizagem",
+    text: "Você esquece conversas recentes, recados, compromissos ou acontecimentos que ocorreram há pouco tempo?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"7",
-    section:"Atenção",
-    type:"radio",
-    text:"Você tem dificuldade para manter a atenção até o fim de uma tarefa, mesmo quando ela é importante?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "7",
+    type: "radio",
+    section: "Neurocognitivo — Memória e Aprendizagem",
+    text: "Você repete a mesma pergunta, história ou informação várias vezes porque não lembra que já falou ou perguntou antes?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"8",
-    section:"Atenção",
-    type:"radio",
-    text:"Você perde o foco com facilidade quando há barulho, movimento ou outras distrações ao redor?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "8",
+    type: "radio",
+    section: "Neurocognitivo — Memória e Aprendizagem",
+    text: "Você esquece onde colocou objetos importantes, como chaves, celular, documentos, dinheiro, óculos ou remédios?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"9",
-    section:"Atenção",
-    type:"radio",
-    text:"Você precisa que expliquem ou repitam instruções porque não conseguiu prestar atenção direito da primeira vez?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "9",
+    type: "radio",
+    section: "Neurocognitivo — Memória e Aprendizagem",
+    text: "Você tem dificuldade para aprender informações novas, como nomes, instruções, senhas, caminhos, orientações médicas ou funcionamento de aparelhos?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"10",
-    section:"Atenção",
-    type:"radio",
-    text:"Você comete erros por distração em tarefas simples do dia a dia, no trabalho ou nos estudos?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-
-  {
-    name:"11",
-    section:"Memória",
-    type:"radio",
-    text:"Você esquece compromissos, horários, recados ou tarefas importantes no dia a dia?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "10",
+    type: "radio",
+    section: "Neurocognitivo — Memória e Aprendizagem",
+    text: "Mesmo quando alguém explica algo com calma, você precisa que a informação seja repetida várias vezes para conseguir lembrar depois?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"12",
-    section:"Memória",
-    type:"radio",
-    text:"Você esquece onde guardou objetos como celular, chave, carteira ou documentos?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "11",
+    type: "radio",
+    section: "Neurocognitivo — Memória e Aprendizagem",
+    text: "Você esquece fatos recentes, mas lembra melhor de acontecimentos antigos da sua vida?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"13",
-    section:"Memória",
-    type:"radio",
-    text:"Você esquece com facilidade o que acabou de ouvir, ler ou combinar com alguém?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"14",
-    section:"Memória",
-    type:"radio",
-    text:"Você repete perguntas, assuntos ou histórias porque não percebe que já falou sobre isso antes?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"15",
-    section:"Memória",
-    type:"radio",
-    text:"Você precisa anotar quase tudo para conseguir lembrar de tarefas, compromissos ou informações importantes?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"16",
-    section:"Memória",
-    type:"radio",
-    text:"Você tem dificuldade para aprender informações novas, mesmo quando presta atenção?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "12",
+    type: "radio",
+    section: "Neurocognitivo — Memória e Aprendizagem",
+    text: "Você precisa usar lembretes, anotações, alarmes, listas ou ajuda de outras pessoas muito mais do que antes para não esquecer tarefas importantes?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
 
   {
-    name:"17",
-    section:"Linguagem",
-    type:"radio",
-    text:"Você tem dificuldade para encontrar a palavra certa quando está falando?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "13",
+    type: "radio",
+    section: "Neurocognitivo — Atenção Complexa",
+    text: "Você tem dificuldade para manter atenção em conversas, leituras, televisão, reuniões, cultos, aulas ou tarefas do dia a dia?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"18",
-    section:"Linguagem",
-    type:"radio",
-    text:"Você troca nomes de pessoas, objetos ou lugares sem querer?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "14",
+    type: "radio",
+    section: "Neurocognitivo — Atenção Complexa",
+    text: "Você se perde facilmente quando precisa acompanhar uma explicação mais longa ou uma conversa com várias informações?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"19",
-    section:"Linguagem",
-    type:"radio",
-    text:"Você tem dificuldade para entender o que as pessoas dizem, mesmo quando estão falando de forma clara?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "15",
+    type: "radio",
+    section: "Neurocognitivo — Atenção Complexa",
+    text: "Você tem dificuldade para fazer duas coisas ao mesmo tempo, como conversar enquanto cozinha, dirigir enquanto presta atenção no caminho ou organizar algo enquanto responde alguém?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"20",
-    section:"Linguagem",
-    type:"radio",
-    text:"Você se perde ou deixa de acompanhar conversas mais longas ou com muitas informações?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "16",
+    type: "radio",
+    section: "Neurocognitivo — Atenção Complexa",
+    text: "Você demora mais do que antes para entender, responder ou concluir tarefas que exigem atenção e velocidade mental?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"21",
-    section:"Linguagem",
-    type:"radio",
-    text:"Você tem dificuldade para entender textos, instruções escritas ou mensagens simples?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-
-  {
-    name:"22",
-    section:"Organização e Planejamento",
-    type:"radio",
-    text:"Você tem dificuldade para planejar o que precisa fazer ao longo do dia ou da semana?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "17",
+    type: "radio",
+    section: "Neurocognitivo — Atenção Complexa",
+    text: "Você se distrai facilmente com barulhos, pessoas, televisão, celular, objetos ao redor ou pensamentos, mesmo tentando se concentrar?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"23",
-    section:"Organização e Planejamento",
-    type:"radio",
-    text:"Você tem dificuldade para organizar horários, materiais, documentos ou compromissos?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"24",
-    section:"Organização e Planejamento",
-    type:"radio",
-    text:"Você começa tarefas, mas tem dificuldade para terminar o que começou?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"25",
-    section:"Organização e Planejamento",
-    type:"radio",
-    text:"Você adia tarefas importantes mesmo sabendo que precisa resolvê-las?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"26",
-    section:"Organização e Planejamento",
-    type:"radio",
-    text:"Você tem dificuldade para resolver problemas práticos do dia a dia, como decidir o que fazer primeiro ou como se organizar?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"27",
-    section:"Organização e Planejamento",
-    type:"radio",
-    text:"Você age por impulso e depois percebe que deveria ter pensado melhor antes de agir ou falar?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"28",
-    section:"Organização e Planejamento",
-    type:"radio",
-    text:"Você tem dificuldade para mudar de plano quando algo sai diferente do que esperava?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "18",
+    type: "radio",
+    section: "Neurocognitivo — Atenção Complexa",
+    text: "Você precisa reler, pedir para repetir ou revisar informações porque sua atenção falha durante a atividade?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
 
   {
-    name:"29",
-    section:"Velocidade de Pensamento",
-    type:"radio",
-    text:"Você sente que está mais lento para entender o que os outros falam ou pedem?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "19",
+    type: "radio",
+    section: "Neurocognitivo — Funções Executivas",
+    text: "Você tem mais dificuldade do que antes para planejar, organizar etapas, iniciar tarefas ou concluir atividades do dia a dia?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"30",
-    section:"Velocidade de Pensamento",
-    type:"radio",
-    text:"Você demora mais do que gostaria para responder perguntas ou tomar decisões simples?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "20",
+    type: "radio",
+    section: "Neurocognitivo — Funções Executivas",
+    text: "Você se atrapalha quando precisa resolver problemas, tomar decisões, comparar opções ou lidar com situações novas?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"31",
-    section:"Velocidade de Pensamento",
-    type:"radio",
-    text:"Você sente que precisa de mais tempo para raciocinar, resolver problemas ou terminar tarefas mentais?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-
-  {
-    name:"32",
-    section:"Orientação",
-    type:"radio",
-    text:"Você se confunde com datas, horários, dias da semana ou compromissos marcados?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "21",
+    type: "radio",
+    section: "Neurocognitivo — Funções Executivas",
+    text: "Você tem dificuldade para seguir uma sequência de passos, como preparar uma receita, organizar documentos, pagar contas ou seguir instruções médicas?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"33",
-    section:"Orientação",
-    type:"radio",
-    text:"Você já se confundiu sobre onde estava, para onde estava indo ou o motivo de ter ido a algum lugar?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "22",
+    type: "radio",
+    section: "Neurocognitivo — Funções Executivas",
+    text: "Você abandona tarefas no meio porque se perde, esquece o próximo passo ou não consegue organizar o que precisa fazer?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"34",
-    section:"Orientação",
-    type:"radio",
-    text:"Você tem dificuldade para reconhecer pessoas conhecidas ou lembrar nomes de pessoas próximas?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-
-  {
-    name:"35",
-    section:"Percepção e Espaço",
-    type:"radio",
-    text:"Você tem dificuldade para se localizar em lugares conhecidos ou para lembrar caminhos que já fazia antes?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "23",
+    type: "radio",
+    section: "Neurocognitivo — Funções Executivas",
+    text: "Você ficou mais rígido, inflexível ou com dificuldade de mudar de estratégia quando algo não dá certo?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"36",
-    section:"Percepção e Espaço",
-    type:"radio",
-    text:"Você confunde direita e esquerda ou se atrapalha com direções e trajetos?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "24",
+    type: "radio",
+    section: "Neurocognitivo — Funções Executivas",
+    text: "Você tem cometido erros de julgamento, como cair em golpes, tomar decisões financeiras ruins, confiar em pessoas inadequadas ou assumir riscos que antes evitaria?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"37",
-    section:"Percepção e Espaço",
-    type:"radio",
-    text:"Você esbarra em objetos, calcula mal distâncias ou se atrapalha para estacionar, passar em espaços ou pegar objetos?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-  {
-    name:"38",
-    section:"Percepção e Espaço",
-    type:"radio",
-    text:"Você tem dificuldade para copiar, montar, desenhar ou organizar coisas visualmente?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "25",
+    type: "radio",
+    section: "Neurocognitivo — Funções Executivas",
+    text: "Você tem dificuldade para controlar impulsos, comentários, gastos, alimentação, raiva, decisões ou comportamentos que antes controlava melhor?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
 
   {
-    name:"39",
-    section:"Coordenação",
-    type:"radio",
-    text:"Você tem dificuldade para usar objetos do dia a dia, como talheres, ferramentas, controles ou utensílios, mesmo já sabendo como usá-los?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "26",
+    type: "radio",
+    section: "Neurocognitivo — Linguagem",
+    text: "Você tem dificuldade para encontrar palavras conhecidas durante uma conversa, mesmo sabendo o que quer dizer?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"40",
-    section:"Coordenação",
-    type:"radio",
-    text:"Você percebe piora na coordenação das mãos para escrever, abotoar, recortar ou manusear objetos pequenos?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "27",
+    type: "radio",
+    section: "Neurocognitivo — Linguagem",
+    text: "Você troca nomes de objetos, pessoas ou lugares, ou usa palavras genéricas como “coisa”, “negócio” ou “aquilo” porque não consegue lembrar a palavra certa?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"41",
-    section:"Coordenação",
-    type:"radio",
-    text:"Você derruba objetos, tropeça ou se sente mais desajeitado do que costumava ser?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-
-  {
-    name:"42",
-    section:"Impacto Funcional",
-    type:"radio",
-    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam no seu desempenho no trabalho ou nos estudos?",
-    options:SEVER4,
-    scale:"SEVER4"
+    name: "28",
+    type: "radio",
+    section: "Neurocognitivo — Linguagem",
+    text: "Você tem dificuldade para entender frases longas, explicações complexas, piadas, instruções ou conversas rápidas?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"43",
-    section:"Impacto Funcional",
-    type:"radio",
-    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam na sua rotina diária dentro de casa?",
-    options:SEVER4,
-    scale:"SEVER4"
+    name: "29",
+    type: "radio",
+    section: "Neurocognitivo — Linguagem",
+    text: "Você percebe que sua fala ficou mais pobre, confusa, lenta, repetitiva ou difícil de acompanhar?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"44",
-    section:"Impacto Funcional",
-    type:"radio",
-    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam na sua capacidade de cuidar de horários, contas, remédios ou compromissos?",
-    options:SEVER4,
-    scale:"SEVER4"
-  },
-  {
-    name:"45",
-    section:"Impacto Funcional",
-    type:"radio",
-    text:"Qual é a gravidade do prejuízo que as dificuldades com memória, atenção, organização, fala ou raciocínio causam na sua autonomia para resolver as coisas sozinho?",
-    options:SEVER4,
-    scale:"SEVER4"
+    name: "30",
+    type: "radio",
+    section: "Neurocognitivo — Linguagem",
+    text: "Você tem mais dificuldade do que antes para ler, escrever, compreender textos, preencher formulários ou acompanhar mensagens?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
 
   {
-    name:"46",
-    section:"Sono e Fatores Emocionais",
-    type:"radio",
-    text:"A ansiedade atrapalha sua atenção, memória, organização ou raciocínio?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "31",
+    type: "radio",
+    section: "Neurocognitivo — Perceptomotor e Visuoespacial",
+    text: "Você se perde em lugares conhecidos ou tem dificuldade para encontrar caminhos que antes fazia com facilidade?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"47",
-    section:"Sono e Fatores Emocionais",
-    type:"radio",
-    text:"O desânimo, a tristeza ou a falta de energia atrapalham sua atenção, memória, organização ou raciocínio?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "32",
+    type: "radio",
+    section: "Neurocognitivo — Perceptomotor e Visuoespacial",
+    text: "Você tem dificuldade para calcular distância, estacionar, dirigir, desviar de objetos ou se orientar em ambientes?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"48",
-    section:"Sono e Fatores Emocionais",
-    type:"radio",
-    text:"Você dorme mal ou acorda várias vezes durante a noite?",
-    options:FREQ5,
-    scale:"FREQ5"
+    name: "33",
+    type: "radio",
+    section: "Neurocognitivo — Perceptomotor e Visuoespacial",
+    text: "Você tem dificuldade para reconhecer objetos, rostos, lugares ou localizar itens que estão à sua frente?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"49",
-    section:"Sono e Fatores Emocionais",
-    type:"radio",
-    text:"Você acorda cansado e percebe que isso piora sua atenção, memória ou raciocínio ao longo do dia?",
-    options:FREQ5,
-    scale:"FREQ5"
-  },
-
-  {
-    name:"50",
-    section:"Desenvolvimento e Escolaridade",
-    type:"radio",
-    text:"Na infância, você teve atraso para falar, entender, se comunicar ou aprender?",
-    options:YNP,
-    scale:"YNP"
+    name: "34",
+    type: "radio",
+    section: "Neurocognitivo — Perceptomotor e Visuoespacial",
+    text: "Você tem mais dificuldade do que antes para montar objetos, copiar desenhos, usar ferramentas, abotoar roupas, manusear utensílios ou realizar tarefas manuais coordenadas?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"51",
-    section:"Desenvolvimento e Escolaridade",
-    type:"radio",
-    text:"Na infância ou adolescência, você teve dificuldades importantes na escola, como para ler, escrever, fazer contas, prestar atenção ou se organizar?",
-    options:YNP,
-    scale:"YNP"
-  },
-  {
-    name:"52",
-    section:"Desenvolvimento e Escolaridade",
-    type:"radio",
-    text:"Desde a infância, você já apresentava dificuldade para manter atenção, seguir regras, se organizar ou terminar tarefas?",
-    options:YNP,
-    scale:"YNP"
-  },
-  {
-    name:"53",
-    section:"Desenvolvimento e Escolaridade",
-    type:"radio",
-    text:"Você já precisou de reforço escolar, adaptação, acompanhamento especializado ou repetiu de ano por dificuldades de aprendizagem ou atenção?",
-    options:YNP,
-    scale:"YNP"
+    name: "35",
+    type: "radio",
+    section: "Neurocognitivo — Perceptomotor e Visuoespacial",
+    text: "Você tropeça, esbarra, derruba objetos ou se atrapalha fisicamente com mais frequência do que antes, sem explicação apenas muscular ou ortopédica?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
 
   {
-    name:"54",
-    section:"Histórico Médico e Neurológico",
-    type:"radio",
-    text:"Você já teve alguma pancada forte na cabeça, traumatismo craniano ou perda de consciência?",
-    options:YNP,
-    scale:"YNP"
+    name: "36",
+    type: "radio",
+    section: "Neurocognitivo — Cognição Social",
+    text: "Você tem tido mais dificuldade para perceber emoções, intenções, ironias, indiretas ou reações das outras pessoas?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"55",
-    section:"Histórico Médico e Neurológico",
-    type:"radio",
-    text:"Você já teve convulsão, epilepsia, desmaios repetidos ou algum problema neurológico importante?",
-    options:YNP,
-    scale:"YNP"
+    name: "37",
+    type: "radio",
+    section: "Neurocognitivo — Cognição Social",
+    text: "Você passou a fazer comentários inadequados, invasivos, grosseiros ou socialmente fora de hora, mesmo sem perceber no momento?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"56",
-    section:"Histórico Médico e Neurológico",
-    type:"radio",
-    text:"Você já teve AVC, infecção no cérebro, meningite ou outra doença que possa ter afetado memória, atenção, fala ou raciocínio?",
-    options:YNP,
-    scale:"YNP"
+    name: "38",
+    type: "radio",
+    section: "Neurocognitivo — Cognição Social",
+    text: "Você ficou menos sensível ao sofrimento, às necessidades ou aos limites das outras pessoas em comparação com seu comportamento anterior?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
   },
   {
-    name:"57",
-    section:"Histórico Médico e Neurológico",
-    type:"radio",
-    text:"Você tem alguma doença de saúde que possa interferir na atenção, memória, energia ou raciocínio, como problema de tireoide, diabetes, dor crônica ou outra condição clínica importante?",
-    options:YNP,
-    scale:"YNP"
-  },
-  {
-    name:"58",
-    section:"Histórico Médico e Neurológico",
-    type:"radio",
-    text:"Você usa algum remédio que percebe que piora sua atenção, memória, sono ou raciocínio?",
-    options:YNP,
-    scale:"YNP"
-  },
-
-  {
-    name:"59",
-    section:"Uso de Substâncias",
-    type:"radio",
-    text:"Você usa bebida alcoólica com frequência a ponto de perceber prejuízo na atenção, memória, sono ou raciocínio?",
-    options:YNP,
-    scale:"YNP"
-  },
-  {
-    name:"60",
-    section:"Uso de Substâncias",
-    type:"radio",
-    text:"Você usa maconha, cocaína, estimulantes, calmantes ou outras substâncias que possam interferir no funcionamento mental?",
-    options:YNP,
-    scale:"YNP"
-  },
-  {
-    name:"61",
-    section:"Uso de Substâncias",
-    type:"radio",
-    text:"Você percebe que sua atenção, memória, organização ou raciocínio pioram por causa do uso de álcool, drogas ou medicações?",
-    options:YNP,
-    scale:"YNP"
+    name: "39",
+    type: "radio",
+    section: "Neurocognitivo — Cognição Social",
+    text: "Pessoas próximas dizem que sua personalidade mudou, como se você estivesse mais frio, impulsivo, desinibido, apático, irritado ou sem filtro social?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
   },
 
   {
-    name:"62",
-    section:"História Familiar",
-    type:"radio",
-    text:"Há pessoas na sua família com dificuldades importantes de atenção, memória, aprendizagem, linguagem ou organização?",
-    options:YNP,
-    scale:"YNP"
+    name: "40",
+    type: "radio",
+    section: "Neurocognitivo — Independência Funcional",
+    text: "Você ainda consegue cuidar sozinho das suas atividades básicas, como banho, alimentação, higiene, vestir-se e uso do banheiro?",
+    options: YESNO,
+    scale: "YESNO",
+    reverse: false,
+    required: false
   },
   {
-    name:"63",
-    section:"História Familiar",
-    type:"radio",
-    text:"Há pessoas na sua família com diagnóstico de TDAH, autismo, dificuldade de aprendizagem ou deficiência intelectual?",
-    options:YNP,
-    scale:"YNP"
+    name: "41",
+    type: "radio",
+    section: "Neurocognitivo — Independência Funcional",
+    text: "Você precisa de ajuda para atividades instrumentais, como controlar dinheiro, pagar contas, tomar remédios, fazer compras, cozinhar, usar transporte ou administrar compromissos?",
+    options: SEVER4,
+    scale: "SEVER4",
+    reverse: false,
+    required: false
   },
   {
-    name:"64",
-    section:"História Familiar",
-    type:"radio",
-    text:"Há pessoas na sua família com demência, Alzheimer ou perda importante de memória?",
-    options:YNP,
-    scale:"YNP"
+    name: "42",
+    type: "radio",
+    section: "Neurocognitivo — Independência Funcional",
+    text: "Você continua independente, mas precisa de muito mais esforço, tempo, lembretes, anotações ou estratégias para realizar tarefas que antes fazia com facilidade?",
+    options: SEVER4,
+    scale: "SEVER4",
+    reverse: false,
+    required: false
   },
   {
-    name:"65",
-    section:"História Familiar",
-    type:"radio",
-    text:"Há pessoas na sua família com depressão, ansiedade, transtorno bipolar, esquizofrenia ou outros transtornos mentais importantes?",
-    options:YNP,
-    scale:"YNP"
+    name: "43",
+    type: "radio",
+    section: "Neurocognitivo — Independência Funcional",
+    text: "Alguém precisou assumir ou supervisionar tarefas que antes eram de sua responsabilidade por causa de esquecimentos, confusão ou erros?",
+    options: SEVER4,
+    scale: "SEVER4",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "44",
+    type: "radio",
+    section: "Neurocognitivo — Independência Funcional",
+    text: "Você já colocou sua segurança ou a segurança de outras pessoas em risco por esquecimento, desatenção, confusão, desorientação ou erro de julgamento?",
+    options: SEVER4,
+    scale: "SEVER4",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "45",
+    type: "radio",
+    section: "Neurocognitivo — Curso e Progressão",
+    text: "As dificuldades cognitivas começaram de forma lenta e foram piorando gradualmente ao longo de meses ou anos?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "46",
+    type: "radio",
+    section: "Neurocognitivo — Curso e Progressão",
+    text: "As dificuldades cognitivas começaram de forma súbita, como após AVC, queda, cirurgia, infecção, internação, crise neurológica ou evento médico importante?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "47",
+    type: "radio",
+    section: "Neurocognitivo — Curso e Progressão",
+    text: "A piora cognitiva acontece em degraus, com quedas bruscas seguidas de períodos de estabilidade parcial?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "48",
+    type: "radio",
+    section: "Neurocognitivo — Curso e Progressão",
+    text: "Seu funcionamento cognitivo oscila muito ao longo do dia, com momentos de lucidez e momentos de confusão importante?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "49",
+    type: "radio",
+    section: "Neurocognitivo — Curso e Progressão",
+    text: "As dificuldades cognitivas pioram muito em situações de cansaço, febre, infecção, desidratação, internação, alteração de sono ou uso de medicações?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "50",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial com Delirium",
+    text: "A confusão mental começou rapidamente, em horas ou poucos dias, em vez de ter se desenvolvido lentamente ao longo do tempo?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "51",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial com Delirium",
+    text: "Durante os episódios de confusão, você fica desorientado, sonolento, agitado, alternando lucidez e confusão ao longo do mesmo dia?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "52",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial com Delirium",
+    text: "A confusão apareceu junto com febre, infecção, desidratação, dor intensa, cirurgia, internação, alteração metabólica ou uso/retirada de medicação?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "53",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial com Delirium",
+    text: "Nesses episódios, sua atenção fica tão prejudicada que você não consegue acompanhar perguntas simples, manter o foco ou permanecer orientado?",
+    options: SEVER4,
+    scale: "SEVER4",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "54",
+    type: "radio",
+    section: "Neurocognitivo — Humor e Pseudodemência",
+    text: "As dificuldades de memória, atenção ou raciocínio começaram junto com tristeza intensa, perda de prazer, desânimo, culpa, desesperança ou isolamento?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "55",
+    type: "radio",
+    section: "Neurocognitivo — Humor e Pseudodemência",
+    text: "Quando seu humor melhora, sua memória, atenção e raciocínio também melhoram de forma importante?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "56",
+    type: "radio",
+    section: "Neurocognitivo — Humor e Pseudodemência",
+    text: "Você sente que sua principal dificuldade é falta de energia, desmotivação e lentidão emocional, mais do que esquecimento progressivo ou perda de habilidades?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "57",
+    type: "radio",
+    section: "Neurocognitivo — Humor e Pseudodemência",
+    text: "Você costuma responder “não sei” rapidamente em tarefas cognitivas, mesmo quando consegue acertar com incentivo, tempo ou ajuda?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "58",
+    type: "radio",
+    section: "Neurocognitivo — Alzheimer",
+    text: "O primeiro sintoma percebido foi esquecimento de informações recentes, como conversas, compromissos, recados ou eventos do dia?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "59",
+    type: "radio",
+    section: "Neurocognitivo — Alzheimer",
+    text: "A dificuldade de memória recente vem piorando de forma lenta e progressiva ao longo do tempo?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "60",
+    type: "radio",
+    section: "Neurocognitivo — Alzheimer",
+    text: "Você esquece informações recentes mesmo quando elas foram importantes, repetidas ou explicadas com clareza?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "61",
+    type: "radio",
+    section: "Neurocognitivo — Alzheimer",
+    text: "Além da memória, você também passou a ter dificuldade em linguagem, orientação, planejamento, reconhecimento de lugares ou execução de tarefas?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "62",
+    type: "radio",
+    section: "Neurocognitivo — Vascular",
+    text: "As dificuldades cognitivas começaram ou pioraram depois de AVC, AIT, derrame, alteração vascular, pressão alta grave, diabetes descompensado ou doença cardiovascular?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "63",
+    type: "radio",
+    section: "Neurocognitivo — Vascular",
+    text: "A piora cognitiva aconteceu em degraus, com quedas súbitas após eventos neurológicos ou períodos de piora brusca?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "64",
+    type: "radio",
+    section: "Neurocognitivo — Vascular",
+    text: "Você apresenta sinais neurológicos junto com a piora cognitiva, como fraqueza em um lado do corpo, alteração de fala, desequilíbrio, dificuldade de marcha ou perda visual?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "65",
+    type: "radio",
+    section: "Neurocognitivo — Vascular",
+    text: "Sua principal dificuldade é lentidão mental, atenção, organização e planejamento, mais do que apenas esquecimento de fatos recentes?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "66",
+    type: "radio",
+    section: "Neurocognitivo — Lewy",
+    text: "Você apresenta oscilações importantes de atenção e lucidez, ficando bem em alguns momentos e muito confuso em outros?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "67",
+    type: "radio",
+    section: "Neurocognitivo — Lewy",
+    text: "Você já viu pessoas, animais, vultos ou cenas que pareciam reais, mas que outras pessoas não viam?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "68",
+    type: "radio",
+    section: "Neurocognitivo — Lewy",
+    text: "Você apresenta sintomas parecidos com Parkinson, como tremor, rigidez, lentidão dos movimentos, passos curtos ou instabilidade ao andar?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "69",
+    type: "radio",
+    section: "Neurocognitivo — Lewy",
+    text: "Durante o sono, você se mexe muito, grita, chuta, soca, fala ou parece representar sonhos intensos?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "70",
+    type: "radio",
+    section: "Neurocognitivo — Frontotemporal",
+    text: "A primeira mudança percebida foi no comportamento, personalidade, julgamento social, empatia, impulsividade ou desinibição, antes de uma perda importante de memória?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "71",
+    type: "radio",
+    section: "Neurocognitivo — Frontotemporal",
+    text: "Você ficou mais desinibido, impulsivo, inadequado, grosseiro, sexualizado, irônico, invasivo ou socialmente sem filtro em comparação com antes?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "72",
+    type: "radio",
+    section: "Neurocognitivo — Frontotemporal",
+    text: "Você ficou mais apático, indiferente, sem iniciativa, sem interesse social ou emocionalmente frio em comparação com antes?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "73",
+    type: "radio",
+    section: "Neurocognitivo — Frontotemporal",
+    text: "Você passou a apresentar comportamentos repetitivos, rigidez de rotina, mudanças alimentares, compulsões, ecolalia ou interesses restritos novos?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "74",
+    type: "radio",
+    section: "Neurocognitivo — Frontotemporal",
+    text: "Sua linguagem piorou de forma progressiva, com dificuldade para falar, nomear objetos, compreender palavras ou construir frases?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "75",
+    type: "radio",
+    section: "Neurocognitivo — Parkinson",
+    text: "Você já tinha diagnóstico ou sintomas de Parkinson antes do início da piora cognitiva?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "76",
+    type: "radio",
+    section: "Neurocognitivo — Parkinson",
+    text: "Depois dos sintomas motores, você passou a ter piora de atenção, lentidão mental, planejamento, memória, alucinações ou oscilação cognitiva?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "77",
+    type: "radio",
+    section: "Neurocognitivo — Traumatismo Craniano",
+    text: "As dificuldades cognitivas começaram depois de queda, acidente, pancada na cabeça, concussão, perda de consciência ou traumatismo craniano?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "78",
+    type: "radio",
+    section: "Neurocognitivo — Traumatismo Craniano",
+    text: "Após o trauma na cabeça, você passou a ter piora de memória, atenção, irritabilidade, impulsividade, lentidão, dor de cabeça, tontura ou alteração de sono?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "79",
+    type: "radio",
+    section: "Neurocognitivo — Traumatismo Craniano",
+    text: "Você teve perda de consciência, confusão, amnésia do evento, vômitos, convulsão ou atendimento hospitalar após a pancada na cabeça?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "80",
+    type: "radio",
+    section: "Neurocognitivo — Substâncias e Medicamentos",
+    text: "As dificuldades cognitivas começaram ou pioraram após uso frequente de álcool, cannabis, cocaína, sedativos, benzodiazepínicos, opioides ou outras substâncias?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "81",
+    type: "radio",
+    section: "Neurocognitivo — Substâncias e Medicamentos",
+    text: "Você usa medicamentos que podem afetar memória, atenção ou lucidez, como calmantes, remédios para dormir, antialérgicos sedativos, anticolinérgicos, anticonvulsivantes ou opioides?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "82",
+    type: "radio",
+    section: "Neurocognitivo — Substâncias e Medicamentos",
+    text: "Quando reduz ou suspende álcool, drogas ou medicações sedativas, sua atenção, memória ou clareza mental melhoram?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "83",
+    type: "radio",
+    section: "Neurocognitivo — Doenças Médicas",
+    text: "Você tem doença neurológica, epilepsia, tumor, infecção, HIV, sífilis, hipotireoidismo, deficiência de vitamina B12, doença hepática, renal, autoimune ou outra condição médica que possa afetar cognição?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "84",
+    type: "radio",
+    section: "Neurocognitivo — Doenças Médicas",
+    text: "As dificuldades cognitivas começaram junto com perda de peso, febre, dor persistente, alterações hormonais, fraqueza, convulsões, alterações de marcha ou outros sinais físicos importantes?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "85",
+    type: "radio",
+    section: "Neurocognitivo — Doenças Médicas",
+    text: "Você teve internações, cirurgias, anestesias, infecções graves ou períodos de UTI antes da piora cognitiva?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "86",
+    type: "radio",
+    section: "Neurocognitivo — Sono",
+    text: "Você dorme mal, ronca muito, tem pausas respiratórias, sonolência diurna ou acorda cansado, com impacto na memória e atenção?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "87",
+    type: "radio",
+    section: "Neurocognitivo — Sono",
+    text: "Sua memória e atenção pioram claramente após noites ruins de sono e melhoram quando dorme melhor?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "88",
+    type: "radio",
+    section: "Neurocognitivo — Psicose e Comportamento",
+    text: "Você passou a ter delírios, desconfianças intensas, alucinações, vozes, visões ou crenças estranhas junto com a piora cognitiva?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "89",
+    type: "radio",
+    section: "Neurocognitivo — Psicose e Comportamento",
+    text: "Essas alterações de percepção ou crença começaram depois da perda cognitiva, e não como um transtorno psicótico antigo?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "90",
+    type: "radio",
+    section: "Neurocognitivo — Segurança",
+    text: "Você já esqueceu panela no fogo, porta aberta, remédio tomado, gás ligado, pagamento importante ou compromisso essencial?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "91",
+    type: "radio",
+    section: "Neurocognitivo — Segurança",
+    text: "Você já se perdeu na rua, no transporte, dirigindo ou em locais que antes conhecia bem?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "92",
+    type: "radio",
+    section: "Neurocognitivo — Segurança",
+    text: "Você já tomou remédio errado, repetiu dose, esqueceu dose importante ou teve dificuldade de seguir prescrição médica por falha de memória ou organização?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "93",
+    type: "radio",
+    section: "Neurocognitivo — Segurança",
+    text: "Você já teve prejuízo financeiro por esquecimento, golpe, erro de julgamento, compras repetidas, dívidas ou dificuldade de administrar dinheiro?",
+    options: SEVER4,
+    scale: "SEVER4",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "94",
+    type: "radio",
+    section: "Neurocognitivo — Segurança",
+    text: "Atualmente, existe risco de você se perder, sofrer acidente, errar medicações, cair em golpes, esquecer itens perigosos ligados ou ficar sem cuidados básicos?",
+    options: SEVER4,
+    scale: "SEVER4",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "95",
+    type: "radio",
+    section: "Neurocognitivo — Consciência do Déficit",
+    text: "Você reconhece que houve piora real da sua cognição em comparação com seu funcionamento anterior?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "96",
+    type: "radio",
+    section: "Neurocognitivo — Consciência do Déficit",
+    text: "Outras pessoas percebem suas dificuldades cognitivas como mais graves do que você percebe?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "97",
+    type: "radio",
+    section: "Neurocognitivo — Consciência do Déficit",
+    text: "Você nega ou minimiza dificuldades que outras pessoas observam de forma repetida na sua rotina?",
+    options: FREQ5,
+    scale: "FREQ5",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "98",
+    type: "radio",
+    section: "Neurocognitivo — Histórico Familiar",
+    text: "Algum familiar biológico próximo teve demência, Alzheimer, Parkinson, doença neurológica progressiva ou declínio cognitivo importante?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "99",
+    type: "radio",
+    section: "Neurocognitivo — Histórico Familiar",
+    text: "Algum familiar apresentou declínio cognitivo antes dos 65 anos, com perda de memória, mudança de comportamento, linguagem ou autonomia?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+
+  {
+    name: "100",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial e Exclusões",
+    text: "As dificuldades cognitivas são melhor explicadas por baixa escolaridade, dificuldade antiga de aprendizagem, TDAH desde a infância ou limitação intelectual prévia, sem declínio recente claro?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "101",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial e Exclusões",
+    text: "As dificuldades cognitivas aparecem apenas durante crises de ansiedade, pânico, estresse, depressão, trauma ou privação de sono?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "102",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial e Exclusões",
+    text: "As dificuldades cognitivas começaram apenas após uso, aumento, retirada ou combinação de medicações/substâncias que podem alterar memória, atenção ou consciência?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
+  },
+  {
+    name: "103",
+    type: "radio",
+    section: "Neurocognitivo — Diferencial e Exclusões",
+    text: "As dificuldades cognitivas ocorrem exclusivamente durante um quadro de confusão aguda, oscilante e recente, sugerindo delirium em vez de declínio neurocognitivo persistente?",
+    options: YNP,
+    scale: "YNP",
+    reverse: false,
+    required: false
   }
 ];
-const INDICATORS_CONFIG = {};
+    
+    const INDICATORS_CONFIG = {};
 
     /**************************************************************
      * HELPERS
